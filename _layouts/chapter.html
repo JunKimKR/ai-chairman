@@ -1,0 +1,21 @@
+---
+layout: default
+---
+<article class="chapter">
+  <p class="ep-no">EPISODE {{ page.ep }}</p>
+  <h1>{{ page.title }}</h1>
+  <div class="text">{{ content }}</div>
+</article>
+<nav class="pager">
+  {% if page.previous %}<a class="prev" href="{{ page.previous.url | relative_url }}">← 이전 화</a>{% else %}<span></span>{% endif %}
+  <a class="list" href="{{ '/' | relative_url }}">목록</a>
+  {% if page.next %}<a class="next" href="{{ page.next.url | relative_url }}">다음 화 →</a>{% else %}<span class="next wait">다음 화는 내일 밤</span>{% endif %}
+</nav>
+<script>
+  // [판도] 메시지와 메신저 대화([이름] ...)를 말풍선처럼 보이게 한다
+  document.querySelectorAll('.text p').forEach(function (p) {
+    var t = p.textContent.trim();
+    if (t.indexOf('[판도]') === 0) p.classList.add('pando');
+    else if (/^\[[^\]]{1,6}\]/.test(t)) p.classList.add('msg');
+  });
+</script>

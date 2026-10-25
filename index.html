@@ -1,0 +1,22 @@
+---
+layout: default
+---
+<section class="hero">
+  <p class="tag">회사물 · 착각물 · 매일 밤 연재</p>
+  <h1>신입사원인데<br>회사 AI가<br>나를 회장감이래</h1>
+  <p class="logline">취업 3수 끝에 들어간 회사. 입사 94일 차, 인사 AI '판도'가 내 10년 후 직위를 찍었다.<br><b>한서그룹 회장. 신뢰도 97.2%.</b><br>그날부터 회사가 이상해졌다.</p>
+  {% assign first = site.posts | last %}
+  {% assign latest = site.posts | first %}
+  <div class="cta">
+    {% if first %}<a class="btn" href="{{ first.url | relative_url }}">1화부터 보기</a>{% endif %}
+    {% if latest and latest != first %}<a class="btn ghost" href="{{ latest.url | relative_url }}">최신화 ({{ latest.ep }}화)</a>{% endif %}
+  </div>
+</section>
+<section class="eps">
+  <h2>전체 회차 <small>{{ site.posts | size }}화</small></h2>
+  <ul>
+    {% for p in site.posts %}
+    <li><a href="{{ p.url | relative_url }}"><span class="n">{{ p.ep }}</span><span class="t">{{ p.title | remove_first: p.ep | remove_first: "화. " }}</span><span class="d">{{ p.date | date: "%-m.%-d" }}</span></a></li>
+    {% endfor %}
+  </ul>
+</section>
